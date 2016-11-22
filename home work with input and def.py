@@ -96,6 +96,8 @@ visits_bank = []
 while True:
 	print('new change')
 	print ("else new change")
+	print ('ee')
+	print('ee')
 	print (' Введите действие:\n v - ввести новый визит \n p - дата следующего визита, чтобы узнать сколько дней можно будет провести в шенгене \n e - для выхода из приложения \n r - для удаления поездки')
 	schengen_constraint = 180
 	residence_limit = 90
