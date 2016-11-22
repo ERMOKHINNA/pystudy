@@ -46,3 +46,4 @@ for user_name, score in result:
 print (4)
 print (4)
 print(5)
+print(6)
