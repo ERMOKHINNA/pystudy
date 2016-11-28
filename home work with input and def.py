@@ -45,33 +45,35 @@ def get_days_for_visits(visits):
 	    
 	return days_for_visits
 	
-#def get_date(b_date, e_date):
-#	b_date = int(input('Введите дату начала'))
-#	e_date = int(input('Введите дату конца'))
-#	return (b_date, e_date)
-
-def get_date_from_file():
-	visits_bank = []
-	with open ('visits.txt') as visit_bank:
-		for visit in visit_bank:
-			visits_bank.append(list(map(int, visit.split())))
-	return visits_bank
-
+def get_date():
+	date = int(input('Введите дату '))
+	return date
+  
 def new_visit(visits_bank):
-	print(('Пробудете в шенгене %s дней\n') % (sum(get_days_for_visits(visits_bank))))
-	print_residence_limit_violation(visits_bank)
+  begin_date = get_date()
+  end_date = get_date()
+	
+  if end_date < begin_date:
+	  print ('Даже чаю не попьете?\n')
+  if visit_not_in_future(visits_bank, begin_date) == True:
+    print ('Вы хотите вернуться в прошлое?')
+  else:  
+    visits_bank.append([begin_date, end_date])
+    print(('Пробудете в шенгене %s дней\n') % (get_days_for_visits(visits_bank)))
+    print_residence_limit_violation(visits_bank)
 
 def future_visit(visits_bank):
-  next_date = int(input('введите дату визита '))
+  next_date = get_date()
   if visit_not_in_future(visits_bank, next_date) == True:
-  	print ('Вы хотите вернуться в прошлое?')
+    print ('Вы хотите вернуться в прошлое?')
   else:
     print_days_future_visit(visits_bank, next_date)
   
 def remove_visits(visits_bank):
   print('Ваши поездки:', visits_bank)
- 
-  visits_bank.remove(visits_bank[int(input('введите номер поездки которую нужно удалить ' ))-1])
+  begin_date = get_date()
+  end_date = get_date()
+  visits_bank.remove([begin_date, end_date])
   
 def handle(action):
 	

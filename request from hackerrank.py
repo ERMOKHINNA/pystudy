@@ -42,3 +42,8 @@ result.sort(key=lambda x: x[1], reverse=True)
 
 for user_name, score in result:
     print("%s: %s Points" % (user_name, score))
+
+print (4)
+print (4)
+print(5)
+print(6)
