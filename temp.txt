@@ -1,0 +1,6 @@
+Moscow
+-2 4 3 5 20
+St.Petersburg
+9 8 8 -3 -10
+Perm
+3 49 34 34 -40
