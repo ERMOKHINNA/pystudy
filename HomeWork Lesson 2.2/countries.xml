@@ -1,0 +1,9 @@
+<HomeWork>
+	<CountriesList>
+      <country sea = 'True' schengen = 'False' average_temperature = '30' currency_rate = '1.8' name = 'Thailand' />
+      <country sea = 'False' schengen = 'True' average_temperature = '30' currency_rate = '1.8' name = 'Hungary' />
+      <country sea = 'True' schengen = 'False' average_temperature = '30' currency_rate = '1.8' name = 'Japan' /> 
+      <country sea = 'True' schengen = 'False' average_temperature = '20' currency_rate = '1.8' name = 'USA' />
+    </CountriesList> 
+</HomeWork>
+
