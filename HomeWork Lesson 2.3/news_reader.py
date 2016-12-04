@@ -49,6 +49,6 @@ def write_result_in_file(tag, filename, code, word_len, word_exception):
 
 
 write_result_in_file('description', 'newscy.xml', 'KOI8_r',6,'<br>')
-write_result_in_file('description', 'newsafr.xml', 'utf-8',6, 'href', '<br')
-write_result_in_file('description', 'newsfr.xml', 'iso8859_5',6, 'href', '<br')
-write_result_in_file('description', 'newsit.xml', 'cp1251',6, 'href', '<br')
+write_result_in_file('description', 'newsafr.xml', 'utf-8',6, '<br')
+write_result_in_file('description', 'newsfr.xml', 'iso8859_5',6, 'br')
+write_result_in_file('description', 'newsit.xml', 'cp1251',6, '<br')
