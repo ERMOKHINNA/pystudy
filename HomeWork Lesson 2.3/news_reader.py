@@ -19,13 +19,13 @@ def get_content_from_tag(tag, filename, code):
 		words_list.append(MainCharacter.text.split())
 	return (words_list)
 # ищем повторяющиеся слова, заданной длины и исключая слова разметки
-def find_repeated_words(word_list, word_len, word_exception, word_exception_1):
+def find_repeated_words(tag, filename, code, word_len, word_exception):
 	repeated_words = {}
-	for article in word_list:
+	for article in get_content_from_tag(tag, filename, code):
 		for word in article:
 			count = 0
-			if len(word) >= word_len and word[len(word_exception)] != word_exception and word[len(word_exception_1)] != word_exception_1:
-				for next_article in word_list:
+			if len(word) >= word_len and word[len(word_exception)] != word_exception:
+				for next_article in get_content_from_tag(tag, filename, code):
 					for next_word in next_article:
 						if word == next_word:
 							count += 1
@@ -41,14 +41,14 @@ def range_repeated_words(repeated_words):
 				repeated_words.pop(k)
 	return (ranged_repeated_words)
 # выводим ТОП 10
-def write_result_in_file(filename, result):
+def write_result_in_file(tag, filename, code, word_len, word_exception):
 	with open ('outpput.txt', 'a') as out_file:
-		out_file.write('\n ТОП-10 из файла  %s \n \n' % (filename))
+		out_file.write('\n ТОП-10 из файла  %s \n' % (filename))
 		for i in range (10):
-			out_file.write ('%s \n' % (result[i]))
+			out_file.write ('%s \n' % (range_repeated_words(find_repeated_words(tag, filename, code, word_len, word_exception))[i]))
 
 
-write_result_in_file('newscy.xml',range_repeated_words(find_repeated_words(get_content_from_tag('description', 'newscy.xml', 'KOI8_r'),6, 'href', '<br')))
-write_result_in_file('newsafr.xml',range_repeated_words(find_repeated_words(get_content_from_tag('description', 'newsafr.xml', 'utf-8'),6, 'href', '<br')))
-write_result_in_file('newsfr.xml',range_repeated_words(find_repeated_words(get_content_from_tag('description', 'newsfr.xml', 'iso8859_5'),6, 'href', '<br')))
-write_result_in_file('newsit.xml',range_repeated_words(find_repeated_words(get_content_from_tag('description', 'newsit.xml', 'cp1251'),6, 'href', '<br')))
+write_result_in_file('description', 'newscy.xml', 'KOI8_r',6,'<br>')
+write_result_in_file('description', 'newsafr.xml', 'utf-8',6, 'href', '<br')
+write_result_in_file('description', 'newsfr.xml', 'iso8859_5',6, 'href', '<br')
+write_result_in_file('description', 'newsit.xml', 'cp1251',6, 'href', '<br')
