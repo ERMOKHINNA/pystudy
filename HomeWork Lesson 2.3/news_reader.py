@@ -21,11 +21,12 @@ def get_content_from_tag(tag, filename, code):
 # ищем повторяющиеся слова, заданной длины и исключая слова разметки
 def find_repeated_words(tag, filename, code, word_len, word_exception):
 	repeated_words = {}
-	for article in get_content_from_tag(tag, filename, code):
+	words_list = get_content_from_tag(tag, filename, code)
+	for article in words_list:
 		for word in article:
 			count = 0
 			if len(word) >= word_len and word[len(word_exception)] != word_exception:
-				for next_article in get_content_from_tag(tag, filename, code):
+				for next_article in words_list:
 					for next_word in next_article:
 						if word == next_word:
 							count += 1
@@ -41,14 +42,15 @@ def range_repeated_words(repeated_words):
 				repeated_words.pop(k)
 	return (ranged_repeated_words)
 # выводим ТОП 10
-def write_result_in_file(tag, filename, code, word_len, word_exception):
+def write_top10_repeated_wors_from(tag, filename, code, word_len, word_exception):
 	with open ('outpput.txt', 'a') as out_file:
 		out_file.write('\n ТОП-10 из файла  %s \n' % (filename))
+		result = range_repeated_words(find_repeated_words(tag, filename, code, word_len, word_exception))
 		for i in range (10):
-			out_file.write ('%s \n' % (range_repeated_words(find_repeated_words(tag, filename, code, word_len, word_exception))[i]))
+			out_file.write ('%s \n' % (result[i]))
 
 
-write_result_in_file('description', 'newscy.xml', 'KOI8_r',6,'<br>')
-write_result_in_file('description', 'newsafr.xml', 'utf-8',6, '<br')
-write_result_in_file('description', 'newsfr.xml', 'iso8859_5',6, 'br')
-write_result_in_file('description', 'newsit.xml', 'cp1251',6, '<br')
+write_top10_repeated_wors_from('description', 'newscy.xml', 'KOI8_r',6,'<br>')
+write_top10_repeated_wors_from('description', 'newsafr.xml', 'utf-8',6, '<br')
+write_top10_repeated_wors_from('description', 'newsfr.xml', 'iso8859_5',6, 'br')
+write_top10_repeated_wors_from('description', 'newsit.xml', 'cp1251',6, '<br')
