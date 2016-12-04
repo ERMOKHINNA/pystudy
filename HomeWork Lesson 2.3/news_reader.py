@@ -43,9 +43,10 @@ def range_repeated_words(repeated_words):
 # выводим ТОП 10
 def write_result_in_file(filename, result):
 	with open ('outpput.txt', 'a') as out_file:
-		out_file.write('ТОП-10 из файла  %s \n \n' % (filename))
+		out_file.write('\n ТОП-10 из файла  %s \n \n' % (filename))
 		for i in range (10):
 			out_file.write ('%s \n' % (result[i]))
+
 
 write_result_in_file('newscy.xml',range_repeated_words(find_repeated_words(get_content_from_tag('description', 'newscy.xml', 'KOI8_r'),6, 'href', '<br')))
 write_result_in_file('newsafr.xml',range_repeated_words(find_repeated_words(get_content_from_tag('description', 'newsafr.xml', 'utf-8'),6, 'href', '<br')))
